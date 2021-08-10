@@ -36,26 +36,6 @@ def tratamento_df(df):
   return df.tail(1)
  
 while True:
-  df = api_post('cripto_quotation', {'token': token, 'ticker': 'BTCUSDT'})
-  df['datetime'] = pd.to_datetime(df['datetime'], unit='ms')
-  ## operacoes de feature eng. conforme o treinamento
-  df_tratado = tratamento_df(df)
-  tendencia = meu_modelo_linear_dummy(df_tratado)
-
-  if tendencia > 0:
-    payload = {'token': token,
-              'ticker': 'BTCUSDT',
-                'quantity': 1}
-
-    api_post('buy', payload)
-    print('buy')
-  else:
-      payload = {'token': token,
-              'ticker': 'BTCUSDT',
-                'quantity': 1}
-      # ver se eu tenho bitcoin e, se tiver, vende
-      api_post('sell', payload)
-      print('sell')
-  payload = {'token': token}
-  print(api_post('status', payload))
+  
+  print(datetime.now())
   time.sleep(60)
